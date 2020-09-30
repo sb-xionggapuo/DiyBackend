@@ -1,177 +1,266 @@
 <?php
 use \yii\helpers\Html;
+    $baseurl = \backend\assets\DiyAsset::register($this)->baseUrl;
 ?>
-<?php $this->beginPage() ?>
-<!DOCTYPE html>
+<?php $this->beginPage()?>
+<!doctype html>
 <html lang="<?= Yii::$app->language ?>">
+
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <title><?php Html::encode($this->title)?></title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <link rel="icon" href="style/images/favicon.ico">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?=Html::encode($this->title) ?></title>
     <?php $this->registerCsrfMetaTags() ?>
-    <link rel="stylesheet" href="style/lib/layui-v2.5.5/css/layui.css" media="all">
-    <link rel="stylesheet" href="style/css/layuimini.css?v=2.0.4.2" media="all">
-    <link rel="stylesheet" href="style/css/themes/default.css" media="all">
-    <link rel="stylesheet" href="style/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
-    <!--[if lt IE 9]>
-    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <style id="layuimini-bg-color">
-    </style>
-    <?php $this->head() ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="<?=$baseurl?>/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="<?=$baseurl?>/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="<?=$baseurl?>/css/amazeui.min.css" />
+    <link rel="stylesheet" href="<?=$baseurl?>/css/admin.css">
+    <link rel="stylesheet" href="<?=$baseurl?>/css/app.css">
+    <script src="<?=$baseurl?>/js/echarts.min.js"></script>
+    <?php $this->head();?>
 </head>
-<body class="layui-layout-body layuimini-all">
-<?php $this->beginBody()?>
-<div class="layui-layout layui-layout-admin">
 
-    <div class="layui-header header">
-        <div class="layui-logo layuimini-logo"></div>
+<body data-type="index">
+<?php
+$this->beginBody();
+?>
 
-        <div class="layuimini-header-content">
-            <a>
-                <div class="layuimini-tool"><i title="展开" class="fa fa-outdent" data-side-fold="1"></i></div>
-            </a>
+<header class="am-topbar am-topbar-inverse admin-header">
+    <div class="am-topbar-brand">
+        <a href="javascript:;" class="tpl-logo">
+            <img src="<?=$baseurl?>/img/logo.png" alt="">
+        </a>
+    </div>
+    <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right">
 
-            <!--电脑端头部菜单-->
-            <ul class="layui-nav layui-layout-left layuimini-header-menu layuimini-menu-header-pc layuimini-pc-show">
-            </ul>
+    </div>
 
-            <!--手机端头部菜单-->
-            <ul class="layui-nav layui-layout-left layuimini-header-menu layuimini-mobile-show">
-                <li class="layui-nav-item">
-                    <a href="javascript:;"><i class="fa fa-list-ul"></i> 选择模块</a>
-                    <dl class="layui-nav-child layuimini-menu-header-mobile">
-                    </dl>
-                </li>
-            </ul>
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
 
-            <ul class="layui-nav layui-layout-right">
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 
-                <li class="layui-nav-item" lay-unselect>
-                    <a href="javascript:;" data-refresh="刷新"><i class="fa fa-refresh"></i></a>
-                </li>
-                <li class="layui-nav-item" lay-unselect>
-                    <a href="javascript:;" data-clear="清理" class="layuimini-clear"><i class="fa fa-trash-o"></i></a>
-                </li>
-                <li class="layui-nav-item mobile layui-hide-xs" lay-unselect>
-                    <a href="javascript:;" data-check-screen="full"><i class="fa fa-arrows-alt"></i></a>
-                </li>
-                <li class="layui-nav-item layuimini-setting">
-                    <a href="javascript:;">admin</a>
-                    <dl class="layui-nav-child">
-                        <dd>
-                            <a href="javascript:;" layuimini-content-href="page/user-setting.html" data-title="基本资料" data-icon="fa fa-gears">基本资料<span class="layui-badge-dot"></span></a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" layuimini-content-href="page/user-password.html" data-title="修改密码" data-icon="fa fa-gears">修改密码</a>
-                        </dd>
-                        <dd>
-                            <hr>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" class="login-out">退出登录</a>
-                        </dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item layuimini-select-bgcolor" lay-unselect>
-                    <a href="javascript:;" data-bgcolor="配色方案"><i class="fa fa-ellipsis-v"></i></a>
-                </li>
-            </ul>
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
+            <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                    <span class="am-icon-bell-o"></span> 提醒 <span class="am-badge tpl-badge-success am-round">5</span></span>
+                </a>
+                <ul class="am-dropdown-content tpl-dropdown-content">
+                    <li class="tpl-dropdown-content-external">
+                        <h3>你有 <span class="tpl-color-success">5</span> 条提醒</h3><a href="###">全部</a></li>
+                    <li class="tpl-dropdown-list-bdbc"><a href="#" class="tpl-dropdown-list-fl"><span class="am-icon-btn am-icon-plus tpl-dropdown-ico-btn-size tpl-badge-success"></span> 【预览模块】移动端 查看时 手机、电脑框隐藏。</a>
+                        <span class="tpl-dropdown-list-fr">3小时前</span>
+                    </li>
+                    <li class="tpl-dropdown-list-bdbc"><a href="#" class="tpl-dropdown-list-fl"><span class="am-icon-btn am-icon-check tpl-dropdown-ico-btn-size tpl-badge-danger"></span> 移动端，导航条下边距处理</a>
+                        <span class="tpl-dropdown-list-fr">15分钟前</span>
+                    </li>
+                    <li class="tpl-dropdown-list-bdbc"><a href="#" class="tpl-dropdown-list-fl"><span class="am-icon-btn am-icon-bell-o tpl-dropdown-ico-btn-size tpl-badge-warning"></span> 追加统计代码</a>
+                        <span class="tpl-dropdown-list-fr">2天前</span>
+                    </li>
+                </ul>
+            </li>
+            <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                    <span class="am-icon-comment-o"></span> 消息 <span class="am-badge tpl-badge-danger am-round">9</span></span>
+                </a>
+                <ul class="am-dropdown-content tpl-dropdown-content">
+                    <li class="tpl-dropdown-content-external">
+                        <h3>你有 <span class="tpl-color-danger">9</span> 条新消息</h3><a href="###">全部</a></li>
+                    <li>
+                        <a href="#" class="tpl-dropdown-content-message">
+                                <span class="tpl-dropdown-content-photo">
+                      <img src="<?=$baseurl?>/img/user02.png" alt=""> </span>
+                            <span class="tpl-dropdown-content-subject">
+                      <span class="tpl-dropdown-content-from"> 禁言小张 </span>
+                                <span class="tpl-dropdown-content-time">10分钟前 </span>
+                                </span>
+                            <span class="tpl-dropdown-content-font"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。 </span>
+                        </a>
+                        <a href="#" class="tpl-dropdown-content-message">
+                                <span class="tpl-dropdown-content-photo">
+                      <img src="<?=$baseurl?>/img/user03.png" alt=""> </span>
+                            <span class="tpl-dropdown-content-subject">
+                      <span class="tpl-dropdown-content-from"> Steam </span>
+                                <span class="tpl-dropdown-content-time">18分钟前</span>
+                                </span>
+                            <span class="tpl-dropdown-content-font"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。 </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                    <span class="am-icon-calendar"></span> 进度 <span class="am-badge tpl-badge-primary am-round">4</span></span>
+                </a>
+                <ul class="am-dropdown-content tpl-dropdown-content">
+                    <li class="tpl-dropdown-content-external">
+                        <h3>你有 <span class="tpl-color-primary">4</span> 个任务进度</h3><a href="###">全部</a></li>
+                    <li>
+                        <a href="javascript:;" class="tpl-dropdown-content-progress">
+                                <span class="task">
+                        <span class="desc">Amaze UI 用户中心 v1.2 </span>
+                                <span class="percent">45%</span>
+                                </span>
+                            <span class="progress">
+                        <div class="am-progress tpl-progress am-progress-striped"><div class="am-progress-bar am-progress-bar-success" style="width:45%"></div></div>
+                    </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="tpl-dropdown-content-progress">
+                                <span class="task">
+                        <span class="desc">新闻内容页 </span>
+                                <span class="percent">30%</span>
+                                </span>
+                            <span class="progress">
+                       <div class="am-progress tpl-progress am-progress-striped"><div class="am-progress-bar am-progress-bar-secondary" style="width:30%"></div></div>
+                    </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="tpl-dropdown-content-progress">
+                                <span class="task">
+                        <span class="desc">管理中心 </span>
+                                <span class="percent">60%</span>
+                                </span>
+                            <span class="progress">
+                        <div class="am-progress tpl-progress am-progress-striped"><div class="am-progress-bar am-progress-bar-warning" style="width:60%"></div></div>
+                    </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen" class="tpl-header-list-link"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+
+            <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                    <span class="tpl-header-list-user-nick">禁言小张</span><span class="tpl-header-list-user-ico"> <img src="<?=$baseurl?>/img/user01.png"></span>
+                </a>
+                <ul class="am-dropdown-content">
+                    <li><a href="#"><span class="am-icon-bell-o"></span> 资料</a></li>
+                    <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
+                    <li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
+                </ul>
+            </li>
+            <li><a href="###" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
+        </ul>
+    </div>
+</header>
+
+
+
+
+
+
+
+<div class="tpl-page-container tpl-page-header-fixed">
+
+
+    <div class="tpl-left-nav tpl-left-nav-hover">
+        <div class="tpl-left-nav-title">
+            Amaze UI 列表
         </div>
-    </div>
+        <div class="tpl-left-nav-list">
+            <ul class="tpl-left-nav-menu">
+                <li class="tpl-left-nav-item">
+                    <a href="index.html" class="nav-link active">
+                        <i class="am-icon-home"></i>
+                        <span>首页</span>
+                    </a>
+                </li>
+                <li class="tpl-left-nav-item">
+                    <a href="chart.html" class="nav-link tpl-left-nav-link-list">
+                        <i class="am-icon-bar-chart"></i>
+                        <span>数据表</span>
+                        <i class="tpl-left-nav-content tpl-badge-danger">
+                            12
+                        </i>
+                    </a>
+                </li>
 
-    <!--无限极左侧菜单-->
-    <div class="layui-side layui-bg-black layuimini-menu-left">
-    </div>
+                <li class="tpl-left-nav-item">
+                    <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                        <i class="am-icon-table"></i>
+                        <span>表格</span>
+                        <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                    </a>
+                    <ul class="tpl-left-nav-sub-menu">
+                        <li>
+                            <a href="table-font-list.html">
+                                <i class="am-icon-angle-right"></i>
+                                <span>文字表格</span>
+                                <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                            </a>
 
-    <!--初始化加载层-->
-    <div class="layuimini-loader">
-        <div class="layuimini-loader-inner"></div>
-    </div>
+                            <a href="table-images-list.html">
+                                <i class="am-icon-angle-right"></i>
+                                <span>图片表格</span>
+                                <i class="tpl-left-nav-content tpl-badge-success">
+                                    18
+                                </i>
 
-    <!--手机端遮罩层-->
-    <div class="layuimini-make"></div>
+                                <a href="form-news.html">
+                                    <i class="am-icon-angle-right"></i>
+                                    <span>消息列表</span>
+                                    <i class="tpl-left-nav-content tpl-badge-primary">
+                                        5
+                                    </i>
 
-    <!-- 移动导航 -->
-    <div class="layuimini-site-mobile"><i class="layui-icon"></i></div>
 
-    <div class="layui-body">
+                                    <a href="form-news-list.html">
+                                        <i class="am-icon-angle-right"></i>
+                                        <span>文字列表</span>
 
-        <div class="layuimini-tab layui-tab-rollTool layui-tab" lay-filter="layuiminiTab" lay-allowclose="true">
-            <ul class="layui-tab-title">
-                <li class="layui-this" id="layuiminiHomeTabId" lay-id=""></li>
-            </ul>
-            <div class="layui-tab-control">
-                <li class="layuimini-tab-roll-left layui-icon layui-icon-left"></li>
-                <li class="layuimini-tab-roll-right layui-icon layui-icon-right"></li>
-                <li class="layui-tab-tool layui-icon layui-icon-down">
-                    <ul class="layui-nav close-box">
-                        <li class="layui-nav-item">
-                            <a href="javascript:;"><span class="layui-nav-more"></span></a>
-                            <dl class="layui-nav-child">
-                                <dd><a href="javascript:;" layuimini-tab-close="current">关 闭 当 前</a></dd>
-                                <dd><a href="javascript:;" layuimini-tab-close="other">关 闭 其 他</a></dd>
-                                <dd><a href="javascript:;" layuimini-tab-close="all">关 闭 全 部</a></dd>
-                            </dl>
+                                    </a>
                         </li>
                     </ul>
                 </li>
-            </div>
-            <div class="layui-tab-content">
-                <div id="layuiminiHomeTabIframe" class="layui-tab-item layui-show"></div>
-            </div>
+
+                <li class="tpl-left-nav-item">
+                    <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                        <i class="am-icon-wpforms"></i>
+                        <span>表单</span>
+                        <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right tpl-left-nav-more-ico-rotate"></i>
+                    </a>
+                    <ul class="tpl-left-nav-sub-menu" style="display: block;">
+                        <li>
+                            <a href="form-amazeui.html">
+                                <i class="am-icon-angle-right"></i>
+                                <span>Amaze UI 表单</span>
+                                <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                            </a>
+
+                            <a href="form-line.html">
+                                <i class="am-icon-angle-right"></i>
+                                <span>线条表单</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="tpl-left-nav-item">
+                    <a href="login.html" class="nav-link tpl-left-nav-link-list">
+                        <i class="am-icon-key"></i>
+                        <span>登录</span>
+
+                    </a>
+                </li>
+            </ul>
         </div>
-
     </div>
+    <?=$content?>
+
 </div>
-<div><?= $content ?></div>
-<script src="style/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
-<script src="style/js/lay-config.js?v=2.0.0" charset="utf-8"></script>
-<script>
-    layui.use(['jquery', 'layer', 'miniAdmin','miniTongji'], function () {
-        var $ = layui.jquery,
-            layer = layui.layer,
-            miniAdmin = layui.miniAdmin,
-            miniTongji = layui.miniTongji;
-
-        var options = {
-            iniUrl: "style/api/init.json",    // 初始化接口
-            clearUrl: "style/api/clear.json", // 缓存清理接口
-            urlHashLocation: true,      // 是否打开hash定位
-            bgColorDefault: false,      // 主题默认配置
-            multiModule: true,          // 是否开启多模块
-            menuChildOpen: false,       // 是否默认展开菜单
-            loadingTime: 0,             // 初始化加载时间
-            pageAnim: true,             // iframe窗口动画
-            maxTabNum: 20,              // 最大的tab打开数量
-        };
-        miniAdmin.render(options);
-
-        // 百度统计代码，只统计指定域名
-        miniTongji.render({
-            specific: true,
-            domains: [
-                '99php.cn',
-                'layuimini.99php.cn',
-                'layuimini-onepage.99php.cn',
-            ],
-        });
-
-        $('.login-out').on("click", function () {
-            layer.msg('退出登录成功', function () {
-                window.location = 'page/login-3.html';
-            });
-        });
-    });
-</script>
-<?php $this->endBody()?>
+<script src="<?=$baseurl?>/js/jquery-2.1.1.js"></script>
+<script src="<?=$baseurl?>/js/amazeui.min.js"></script>
+<script src="<?=$baseurl?>/js/iscroll.js"></script>
+<script src="<?=$baseurl?>/js/app.js"></script>
+<?php $this->endBody();?>
 </body>
-</html>
-<?php $this->endPage()?>
+</html><!doctype html>
+<?php $this->endPage();?>
