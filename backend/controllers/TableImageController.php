@@ -5,7 +5,6 @@ namespace backend\controllers;
 
 
 use backend\controllers\base\Table;
-use yii\web\Controller;
 
 class TableImageController extends Table
 {

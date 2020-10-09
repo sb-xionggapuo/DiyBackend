@@ -188,9 +188,13 @@ $this->beginBody();
                     <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
                         <i class="am-icon-table"></i>
                         <span>表格</span>
-                        <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                        <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right tpl-left-nav-more-ico-rotate"></i>
                     </a>
-                    <ul class="tpl-left-nav-sub-menu" style="display:<?=$this->params['nav'] == "table"?'block':'none';?>">
+                    <?php if (isset($this->params['nav'])){?>
+                    <ul class="tpl-left-nav-sub-menu" style="display: <?=$this->params['nav'] == "form"?'block':'none';?>;">
+                        <?php }else{?>
+                        <ul class="tpl-left-nav-sub-menu" style="display:none;">
+                        <?php }?>
                         <li>
                             <a href="<?= \yii\helpers\Url::to(['table-font/index']);?>" class="<?= $url == 'table-font/index'?'active':''?>">
                                 <i class="am-icon-angle-right"></i>
@@ -227,7 +231,11 @@ $this->beginBody();
                         <span>表单</span>
                         <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right tpl-left-nav-more-ico-rotate"></i>
                     </a>
+                    <?php if (isset($this->params['nav'])){?>
                     <ul class="tpl-left-nav-sub-menu" style="display: <?=$this->params['nav'] == "form"?'block':'none';?>;">
+                        <?php }else{?>
+                        <ul class="tpl-left-nav-sub-menu" style="display: none;">
+                        <?php }?>
                         <li>
                             <a href="<?=\yii\helpers\Url::to(['form-amazeui/index'])?>" class="<?= $url == 'form-amazeui/index'?'active':''?>">
                                 <i class="am-icon-angle-right"></i>
