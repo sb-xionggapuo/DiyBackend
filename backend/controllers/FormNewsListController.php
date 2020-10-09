@@ -7,9 +7,10 @@ namespace backend\controllers;
 use backend\controllers\base\Table;
 use yii\web\Controller;
 
-class TableFontController extends Table {
+class FormNewsListController extends Table
+{
     public $layout = "backend_main";
     public function actionIndex(){
-     return  $this->render('index');
+        return $this->render('index');
     }
 }

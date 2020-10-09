@@ -27,13 +27,13 @@ $baseurl = \backend\assets\DiyAsset::register($this)->baseUrl;
     <div class="myapp-login-logo-block  tpl-login-max">
         <div class="myapp-login-logo-text">
             <div class="myapp-login-logo-text">
-                Amaze UI<span> Login</span> <i class="am-icon-skyatlas"></i>
+                个人测试<span>登录</span> <i class="am-icon-skyatlas"></i>
 
             </div>
         </div>
 
         <div class="login-font">
-            <i>Log In </i> or <span> Sign Up</span>
+            <i>登录 </i> 或者 <span> 注册</span>
         </div>
         <div class="am-u-sm-10 login-am-center">
                 <?php $form = \yii\widgets\ActiveForm::begin()?>
