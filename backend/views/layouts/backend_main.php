@@ -144,10 +144,10 @@ $this->beginBody();
                 <ul class="am-dropdown-content">
                     <li><a href="#"><span class="am-icon-bell-o"></span> 资料</a></li>
                     <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
-                    <li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
+                    <li><a href="<?=\yii\helpers\Url::to('backend/site/logout');?>"><span class="am-icon-power-off"></span>退出</a></li>
                 </ul>
             </li>
-            <li><a href="###" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
+            <li><a href="<?=\yii\helpers\Url::to(['site/logout']);?>" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
         </ul>
     </div>
 </header>
@@ -166,15 +166,16 @@ $this->beginBody();
             Amaze UI 列表
         </div>
         <div class="tpl-left-nav-list">
+            <?= $url = Yii::$app->requestedRoute?>
             <ul class="tpl-left-nav-menu">
                 <li class="tpl-left-nav-item">
-                    <a href="index.html" class="nav-link active">
+                    <a href="<?=\yii\helpers\Url::to(['index/index'])?>" class="nav-link <?= $url == 'index/index'?'active':''?>">
                         <i class="am-icon-home"></i>
                         <span>首页</span>
                     </a>
                 </li>
                 <li class="tpl-left-nav-item">
-                    <a href="chart.html" class="nav-link tpl-left-nav-link-list">
+                    <a href="<?=\yii\helpers\Url::to(['chart/index'])?>" class="nav-link tpl-left-nav-link-list <?= $url == 'chart/index'?'active':''?>">
                         <i class="am-icon-bar-chart"></i>
                         <span>数据表</span>
                         <i class="tpl-left-nav-content tpl-badge-danger">
@@ -191,20 +192,20 @@ $this->beginBody();
                     </a>
                     <ul class="tpl-left-nav-sub-menu">
                         <li>
-                            <a href="table-font-list.html">
+                            <a href="<?= \yii\helpers\Url::to(['table-font/index']);?>" class="<?= $url == 'table-font/index'?'active':''?>">
                                 <i class="am-icon-angle-right"></i>
                                 <span>文字表格</span>
                                 <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
                             </a>
 
-                            <a href="table-images-list.html">
+                            <a href="<?= \yii\helpers\Url::to(['table-image/index']);?>" class="<?= $url == 'table-image/index'?'active':''?>">
                                 <i class="am-icon-angle-right"></i>
                                 <span>图片表格</span>
                                 <i class="tpl-left-nav-content tpl-badge-success">
                                     18
                                 </i>
 
-                                <a href="form-news.html">
+                                <a href="<?= \yii\helpers\Url::to(['form-news/index']);?>" class="<?= $url == 'form-news/index'?'active':''?>">
                                     <i class="am-icon-angle-right"></i>
                                     <span>消息列表</span>
                                     <i class="tpl-left-nav-content tpl-badge-primary">
@@ -212,7 +213,7 @@ $this->beginBody();
                                     </i>
 
 
-                                    <a href="form-news-list.html">
+                                    <a href="<?= \yii\helpers\Url::to(['form-news-list/index']);?>" class="<?= $url == 'form-news-list/index'?'active':''?>">
                                         <i class="am-icon-angle-right"></i>
                                         <span>文字列表</span>
 
@@ -220,7 +221,6 @@ $this->beginBody();
                         </li>
                     </ul>
                 </li>
-
                 <li class="tpl-left-nav-item">
                     <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
                         <i class="am-icon-wpforms"></i>
@@ -254,11 +254,10 @@ $this->beginBody();
         </div>
     </div>
     <?=$content?>
-
 </div>
 <script src="<?=$baseurl?>/js/jquery-2.1.1.js"></script>
 <script src="<?=$baseurl?>/js/amazeui.min.js"></script>
-<script src="<?=$baseurl?>/js/iscroll.js"></script>
+<script src="<?=$baseurl?>/js/iscroll.js"></script>s
 <script src="<?=$baseurl?>/js/app.js"></script>
 <?php $this->endBody();?>
 </body>

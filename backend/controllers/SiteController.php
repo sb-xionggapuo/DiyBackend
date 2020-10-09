@@ -35,7 +35,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+//                    'logout' => ['post'],
                 ],
             ],
         ];
@@ -58,9 +58,10 @@ class SiteController extends Controller
      *
      * @return string
      */
+    public $layout="backend_main";
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('//index/index');
     }
 
     /**
@@ -80,7 +81,7 @@ class SiteController extends Controller
         } else {
             $model->password = '';
 
-            return $this->render('login', [
+            return $this->renderPartial('login', [
                 'model' => $model,
             ]);
         }
