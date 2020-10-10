@@ -1,6 +1,7 @@
 <?php
 use \yii\helpers\Html;
     $baseurl = \backend\assets\DiyAsset::register($this)->baseUrl;
+    $uploader = \backend\assets\WebUploaderAsset::register($this)->baseUrl;
 ?>
 <?php $this->beginPage()?>
 <!doctype html>
@@ -20,7 +21,11 @@ use \yii\helpers\Html;
     <link rel="stylesheet" href="<?=$baseurl?>/css/amazeui.min.css" />
     <link rel="stylesheet" href="<?=$baseurl?>/css/admin.css">
     <link rel="stylesheet" href="<?=$baseurl?>/css/app.css">
+    <link rel="stylesheet" href="<?=$uploader?>/webuploader.css">
     <script src="<?=$baseurl?>/js/echarts.min.js"></script>
+    <script src="<?=$uploader?>/jquery-1.8.3.min.js"></script>
+    <script src="<?=$uploader?>/webuploader.js"></script>
+
     <?php $this->head();?>
 </head>
 
@@ -288,6 +293,7 @@ $this->beginBody();
 <script src="<?=$baseurl?>/js/amazeui.min.js"></script>
 <script src="<?=$baseurl?>/js/iscroll.js"></script>s
 <script src="<?=$baseurl?>/js/app.js"></script>
+<?=$this->blocks['js']?>
 <?php $this->endBody();?>
 </body>
 </html><!doctype html>

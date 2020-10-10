@@ -14,8 +14,8 @@ class MenuManageController extends Menu
     }
     public function actionAdd(){
        $model =  new MenuForm();
-       if ($model->load(\Yii::$app->requestedParams)){
-
+       if ($model->load(\Yii::$app->request->post())){
+            var_dump("dahsj");die;
        }
        return $this->render("add",[
           'model' =>    $model
