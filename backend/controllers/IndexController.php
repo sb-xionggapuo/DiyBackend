@@ -23,8 +23,6 @@ class IndexController extends Controller
             ],
         ];
     }
-
-    public $layout="backend_main";
     public function actionIndex(){
         return $this->render("index");
     }

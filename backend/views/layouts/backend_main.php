@@ -144,7 +144,7 @@ $this->beginBody();
                 <ul class="am-dropdown-content">
                     <li><a href="#"><span class="am-icon-bell-o"></span> 资料</a></li>
                     <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
-                    <li><a href="<?=\yii\helpers\Url::to('backend/site/logout');?>"><span class="am-icon-power-off"></span>退出</a></li>
+                    <li><a href="<?=\yii\helpers\Url::to(['site/logout']);?>"><span class="am-icon-power-off"></span>退出</a></li>
                 </ul>
             </li>
             <li><a href="<?=\yii\helpers\Url::to(['site/logout']);?>" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
@@ -191,7 +191,7 @@ $this->beginBody();
                         <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right tpl-left-nav-more-ico-rotate"></i>
                     </a>
                     <?php if (isset($this->params['nav'])){?>
-                    <ul class="tpl-left-nav-sub-menu" style="display: <?=$this->params['nav'] == "form"?'block':'none';?>;">
+                    <ul class="tpl-left-nav-sub-menu" style="display: <?=$this->params['nav'] == "table"?'block':'none';?>;">
                         <?php }else{?>
                         <ul class="tpl-left-nav-sub-menu" style="display:none;">
                         <?php }?>
@@ -225,6 +225,35 @@ $this->beginBody();
                         </li>
                     </ul>
                 </li>
+
+                        <li class="tpl-left-nav-item">
+                            <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
+                                <i class="am-icon-table"></i>
+                                <span>菜单管理</span>
+                                <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right tpl-left-nav-more-ico-rotate"></i>
+                            </a>
+                            <?php if (isset($this->params['nav'])){?>
+                            <ul class="tpl-left-nav-sub-menu" style="display: <?=$this->params['nav'] == "menu"?'block':'none';?>;">
+                                <?php }else{?>
+                                <ul class="tpl-left-nav-sub-menu" style="display:none;">
+                                    <?php }?>
+                                    <li>
+                                        <a href="<?= \yii\helpers\Url::to(['menu-manage/index']);?>" class="<?= $url == 'menu-manage/index'?'active':''?>">
+                                            <i class="am-icon-angle-right"></i>
+                                            <span>栏目管理</span>
+                                        </a>
+
+<!--                                        <a href="--><?//= \yii\helpers\Url::to(['form-news-list/index']);?><!--" class="--><?//= $url == 'form-news-list/index'?'active':''?><!--">-->
+<!--                                            <i class="am-icon-angle-right"></i>-->
+<!--                                            <span>文字列表</span>-->
+<!---->
+<!--                                        </a>-->
+                                    </li>
+                                </ul>
+                                </li>
+
+
+
                 <li class="tpl-left-nav-item">
                     <a href="javascript:;" class="nav-link tpl-left-nav-link-list">
                         <i class="am-icon-wpforms"></i>
