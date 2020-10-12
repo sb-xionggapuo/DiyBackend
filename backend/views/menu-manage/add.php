@@ -31,11 +31,11 @@ $webuploder = \backend\assets\WebUploaderAsset::register($this)->baseUrl;
         <?=$form->field($model,"title")->label("请输入标题")?>
         <?=$form->field($model,"image")->fileInput()->label("请选择图片")?>
         <?=$form->field($model,"pid")->dropDownList(
-                ["1"=>"下拉选项1","2"=>"下拉选项2"],
+                ["1"=>"下拉选项1","2"=>"下拉选项2","选项"=>[0=>"111",1=>"222"]],
                 ["prompt"=>"请选择"])->label("请选择父栏目")?>
         <?=$form->field($model,"status")->radioList([
-                0=>     "隐藏",
-                1=>     "显示"
+                0   =>     "隐藏",
+                1   =>     "显示",
         ],["prompt"=>"请选择状态"])->label("状态")?>
         <?=$form->field($model,"sort")->textInput()->label("请输入排序")?>
         <div class="form-group">
