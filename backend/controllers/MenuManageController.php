@@ -17,6 +17,7 @@ class MenuManageController extends Menu
     }
     public function actionAdd(){
        $model =  new MenuForm();
+        $model->scenario = "add";
        if (\Yii::$app->request->isPost){
           $file = UploadedFile::getInstance($model,"image");
            $path = $this->getpath();
@@ -30,8 +31,7 @@ class MenuManageController extends Menu
            $data = \Yii::$app->request->post();
            $data['MenuForm']['image'] = $this->getRpath()."/".$rpath;
            $model->appid = "backend";
-           if ($model->load($data)){
-               var_dump($model->toArray());
+           if ($model->load($data)&&$model->save()){
                return "over";
            }else{
                \Yii::$app->response->format = Response::FORMAT_JSON;

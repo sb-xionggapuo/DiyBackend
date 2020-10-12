@@ -14,8 +14,15 @@ class MenuForm extends ActiveRecord
     public function rules()
     {
         return [
-            [['name','status'],'required'],
+            [['name','status','image'],'required'],
+            [['title','pid'],"safe"],
             ['sort','number']
+        ];
+    }
+    public function scenarios()
+    {
+        return [
+            'add'   =>  ['name',"status",'image','title',"pid","sort"]
         ];
     }
 }
