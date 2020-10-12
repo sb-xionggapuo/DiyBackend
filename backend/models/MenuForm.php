@@ -2,14 +2,20 @@
 namespace backend\models;
 
 use yii\base\Model;
+use yii\db\ActiveRecord;
 
-class MenuForm extends Model
+class MenuForm extends ActiveRecord
 {
+  public static function tableName()
+  {
+      return '{{menu_manage}}';
+  }
+
     public function rules()
     {
         return [
             [['name','status'],'required'],
-            [['image'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg,png,gif'],
+            ['sort','number']
         ];
     }
 }
