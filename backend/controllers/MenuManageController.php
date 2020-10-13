@@ -24,10 +24,8 @@ class MenuManageController extends Menu
            $path = $this->getpath();
            $rpath = md5($file->name).".".$file->getExtension();
            $path =$path."/".$rpath;
-           if ($file->saveAs($path)){
-               echo "上传成功啦";
-           }else{
-               echo "上传失败了";
+           if ($file->getExtension()=="jpg"||$file->getExtension()=="png"||$file->getExtension()=="gif"){
+               $file->saveAs($path);
            }
            $data = \Yii::$app->request->post();
            $data['MenuForm']['image'] = $this->getRpath()."/".$rpath;
