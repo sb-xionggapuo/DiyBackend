@@ -12,26 +12,37 @@ use yii\web\UploadedFile;
 
 class MenuManageController extends Menu
 {
+    public function beforeAction($action)
+    {
+        $currentaction = $action->id;
+
+        $novalidactions = ['up'];
+
+        if(in_array($currentaction,$novalidactions)) {
+
+            $action->controller->enableCsrfValidation = false;
+        }
+        return parent::beforeAction($action);
+    }
+
     public function actionIndex(){
-        return $this->render('index');
+        $model = MenuForm::find()->all();
+        return $this->render('index',[
+            'model' =>  $model
+        ]);
     }
     public function actionAdd(){
        $model =  new MenuForm();
         $model->scenario = "add";
-        $data = MenuForm::find()->all();
+        $data = MenuForm::find()->select(['id','pid','title'])->all();
        if (\Yii::$app->request->isPost){
-          $file = UploadedFile::getInstance($model,"image");
-           $path = $this->getpath();
-           $rpath = md5($file->name).".".$file->getExtension();
-           $path =$path."/".$rpath;
-           if ($file->getExtension()=="jpg"||$file->getExtension()=="png"||$file->getExtension()=="gif"){
-               $file->saveAs($path);
-           }
            $data = \Yii::$app->request->post();
-           $data['MenuForm']['image'] = $this->getRpath()."/".$rpath;
+           if (!empty($data['image'])){
+               $data['MenuForm']['image'] = $data['image'][0];
+           }
            $model->appid = "backend";
            if ($model->load($data)&&$model->save()){
-               return $this->actionIndex("");
+               return $this->actionIndex();
            }else{
                \Yii::$app->response->format = Response::FORMAT_JSON;
                return $model->getErrors();
@@ -57,5 +68,32 @@ class MenuManageController extends Menu
         $month = date("m",time());
         $day = date("d",time());
         return "/image/".$year."/".$month."/".$day;
+    }
+    public function actionUp(){
+        $base64Str = $_POST['image'];
+//post的数据里面，加号会被替换为空格，需要重新替换回来，如果不是post的数据，则注释掉这一行
+        $base64Image = str_replace(' ', '+', $base64Str);
+//匹配出图片的格式
+        if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64Image, $result)){
+            //获取后缀
+            $type = $result[2];
+            //设置保存路径
+            $filePath = $this->getpath();
+            //设置文件名
+            $rpath = $this->getRpath();
+            $rname = $rpath."/".md5($base64Str).".".$type;
+            $fileName =md5($base64Str).".".$type;
+            //设置图片路径
+            $newFile = $filePath."/".$fileName;
+            //存放图片
+            if (file_put_contents($newFile, base64_decode(str_replace($result[1], '', $base64Image)))){
+                //返回文件路径
+                die("/uploads".$rname);
+            }else{
+                die("error");
+            }
+        }else{
+            die("error");
+        }
     }
 }

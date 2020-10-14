@@ -1,7 +1,6 @@
 <?php
 use \yii\helpers\Html;
     $baseurl = \backend\assets\DiyAsset::register($this)->baseUrl;
-    $uploader = \backend\assets\WebUploaderAsset::register($this)->baseUrl;
 ?>
 <?php $this->beginPage()?>
 <!doctype html>
@@ -21,13 +20,8 @@ use \yii\helpers\Html;
     <link rel="stylesheet" href="<?=$baseurl?>/css/amazeui.min.css" />
     <link rel="stylesheet" href="<?=$baseurl?>/css/admin.css">
     <link rel="stylesheet" href="<?=$baseurl?>/css/app.css">
-    <link rel="stylesheet" href="<?=$uploader?>/webuploader.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.7.0/antd.css" integrity="sha512-rgadaeBfC+pvWuYk6tCoYoAcoDof+dqJdKZZ38vyHwS58tIJDoHSL7vWdd6Fxu41O8PZTkAYdvEoDE7/pATmkQ==" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/antd/4.7.0/antd.js" integrity="sha512-M1dphS55xPVLQp4qBx58airI2sIT+RSm3NxSKVtDAUmH5qXtl6s22RYkn4nzDYJgwNdOowbDnXIoYk9g/QlKEg==" crossorigin="anonymous"></script>
     <script src="<?=$baseurl?>/js/echarts.min.js"></script>
-    <script src="<?=$uploader?>/jquery-1.8.3.min.js"></script>
-    <script src="<?=$uploader?>/webuploader.js"></script>
-
+    <script src="<?=$baseurl?>/js/cupload.js"></script>
     <?php $this->head();?>
 </head>
 

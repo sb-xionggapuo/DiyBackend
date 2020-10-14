@@ -1,6 +1,5 @@
 <?php
 $baseurl = \backend\assets\DiyAsset::register($this)->baseUrl;
-$webuploder = \backend\assets\WebUploaderAsset::register($this)->baseUrl;
 ?>
 <div class="tpl-content-wrapper">
     <div class="tpl-content-page-title">
@@ -29,9 +28,18 @@ $webuploder = \backend\assets\WebUploaderAsset::register($this)->baseUrl;
 <?php $form = \yii\widgets\ActiveForm::begin()?>
         <?=$form->field($model,"name")->label("请输入别名")?>
         <?=$form->field($model,"title")->label("请输入标题")?>
-        <?=$form->field($model,"image")->fileInput()->label("请选择图片")?>
+<!--        --><?//=$form->field($model,"image")->fileInput()->label("请选择图片")?>
+
+
+        <div class="form-group field-menuform-image required">
+            <label class="control-label" for="menuform-image">请选择图片</label>
+            <input type="hidden" name="MenuForm[image]" value="">
+            <div id="cupload"></div>
+            <div class="help-block"></div>
+        </div>
+
         <?=$form->field($model,"pid")->dropDownList(
-                ["1"=>"下拉选项1","2"=>"下拉选项2","选项"=>[0=>"111",1=>"222"]],
+            \yii\helpers\ArrayHelper::map($data,'id', 'title'),
                 ["prompt"=>"请选择"])->label("请选择父栏目")?>
         <?=$form->field($model,"status")->radioList([
                 0   =>     "隐藏",
@@ -57,27 +65,9 @@ $webuploder = \backend\assets\WebUploaderAsset::register($this)->baseUrl;
 </div>
 <?php $this->beginBlock('js');?>
     <script>
-        var uploader = WebUploader.create({
-            // swf文件路径
-            auto:true,
-            swf: '<?=$webuploder?>/Uploader.swf',
-            // 文件接收服务端。
-            server: 'upload.php',
-            // 选择文件的按钮。可选。
-            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-            pick: '#picker'
+        var cuploadCreate = new Cupload({
+            ele: '#cupload',
+            url:"<?=\yii\helpers\Url::to(['menu-manage/up'])?>"
         });
-        uploader.on( 'uploadSuccess', function( file,response ) {
-            var image = response._raw;
-            $("#only").attr("src",image);
-            $("#only_image").val(image);
-        });
-        // $(".tpl-switch-btn-view").click(function (){
-        //    if ($(".ios-switch").attr("checked")){
-        //        $(".ios-switch").removeAttr("checked");
-        //    }else{
-        //        $(".ios-switch").attr("checked",'true');
-        //    }
-        // })
     </script>
 <?php $this->endBlock();?>
